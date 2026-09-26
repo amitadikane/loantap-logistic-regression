@@ -1,85 +1,66 @@
 # LoanTap — Personal Loan Underwriting (Logistic Regression)
 
 **Domain:** FinTech / Credit Risk  
-**Tools:** Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, SciPy  
+**Tools:** Python, Scikit-learn, Pandas, Matplotlib, Seaborn, SciPy  
 **Focus:** EDA → Feature Engineering → Logistic Regression → Precision-Recall Tradeoff
 
 ---
 
-## Problem Statement
+## 📌 Problem Statement
 
-LoanTap offers instant, flexible credit products to salaried millennials.  
-This project builds an **underwriting model** to predict whether a personal loan will be **Fully Paid** or **Charged Off**, so the probability can drive credit decisions.
+LoanTap offers instant, flexible credit products to salaried millennials and needs an underwriting layer for Personal Loans.
 
-Approving too many risky applicants raises **NPAs**; rejecting too many good applicants means **lost interest income**. The model balances both.
-
----
-
-## Dataset
-
-- **~396,000** loan applications  
-- **Target:** Fully Paid (~80.4%) vs Charged Off (~19.6%)  
-- Features: loan amount, term, interest rate, grade, income, DTI, revolving utilization, home ownership, employment, credit history, etc.
+Business questions:
+1. Given an applicant’s financial and credit attributes, should LoanTap extend a credit line?
+2. How do we balance NPA risk (approving defaulters) vs lost interest income (rejecting good applicants)?
 
 ---
 
-## Approach
+## 🎯 Project Workflow
 
-1. Exploratory Data Analysis (univariate + bivariate)
-2. Feature Engineering (term, emp_length, grade ordinal, risk flags)
+1. Exploratory Data Analysis (~396K loan applications)
+2. Feature Engineering (term, emp_length, grade, risk flags)
 3. Missing value treatment & multicollinearity check (VIF)
-4. Logistic Regression with class weighting
-5. Evaluation: Classification Report, ROC-AUC, Precision-Recall Curve
-6. Threshold trade-off analysis for bank decision-making
-7. Actionable underwriting recommendations
+4. Build class-weighted Logistic Regression model
+5. Evaluate with Classification Report, ROC-AUC, Precision-Recall Curve
+6. Threshold trade-off analysis for underwriting decisions
+7. Deliver actionable recommendations for LoanTap
 
 ---
 
-## Key Results
+## 🛠️ Tech Stack
 
-| Metric | Value |
-|--------|--------|
-| ROC-AUC | ≈ 0.71 |
-| Recall (Charged Off @ 0.5) | ≈ 63.5% |
-| Precision (Charged Off @ 0.5) | ≈ 31.9% |
-
-**Strong risk drivers:** Grade, DTI, Term (60 months), Purpose (small business), Revolving Utilization, Annual Income
+- Python, Pandas, NumPy
+- Scikit-learn (LogisticRegression, StandardScaler)
+- SciPy, Matplotlib, Seaborn
 
 ---
 
-## Business Recommendations
+## 💡 Key Results
 
-1. Operate **below 0.5 threshold** (e.g. 0.30–0.35) if NPA control is priority (higher recall)
-2. Use **grade, DTI, purpose, term, income** as primary underwriting levers
-3. Offer **tiered terms** (shorter term / lower cap) for higher-risk but still-approvable applicants instead of pure reject
-4. Do **not** use geography as an underwriting rule (no significant state effect)
-5. Enrich later with bureau score / cash-flow data for higher accuracy
-6. Recalibrate model periodically
+- ROC-AUC ≈ 0.71
+- Strong risk drivers: Grade, DTI, Term, Purpose (small business), Revolving Utilization, Annual Income
+- Fully Paid ≈ 80.4% | Charged Off ≈ 19.6%
+- Recommend operating below 0.5 threshold when NPA control is priority
 
 ---
 
-## Questionnaire Highlights
+## 📓 Notebook & Full Report
 
-- Fully Paid: **80.39%**
-- Loan Amount ↔ Installment correlation: **≈ 0.95**
-- Majority home ownership: **MORTGAGE**
-- Grade A more likely to fully pay: **True** (~94% vs ~52% for G)
-- Top job titles: **Teacher**, **Manager**
-- Primary metric for bank: **Recall** (to control NPA)
-- Geography effect: **No** (not significant)
+- **Jupyter Notebook**: [./notebooks/](./notebooks/loantap_analysis.ipynb)
+- **PDF Report**: [./reports/](./reports/loantap_analysis.pdf)
 
 ---
 
-## Files
+## 🚀 Skills Demonstrated
 
-- `notebooks/loantap_analysis.ipynb` — Full analysis notebook
-- `reports/loantap_analysis.pdf` — PDF report
-- `requirements.txt` — Dependencies
+- End-to-end credit risk modeling with Logistic Regression
+- Class imbalance handling & VIF-based feature cleaning
+- Precision-Recall trade-off for business decisions
+- Translating model output into underwriting recommendations
 
 ---
 
-## How to Run
-
-```bash
-pip install -r requirements.txt
-jupyter notebook notebooks/loantap_analysis.ipynb
+**Author:** Amit Narendra Adikane  
+**GitHub:** [amitadikane](https://github.com/amitadikane)  
+**LinkedIn:** [amit-adikane](https://www.linkedin.com/in/amit-adikane-4060a91b1/)
